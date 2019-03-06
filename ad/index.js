@@ -153,7 +153,7 @@ AdPlugin.prototype.loadfootPic = function () {
   var self = this;
 
   wx.request({
-    url: "https://api.jusie.net/adv/banner/FootBanner.json?" + Math.random(),
+    url: "http://127.0.0.1:16000/adv/banner/FootBanner.json?" + Math.random(),
     method: 'GET',
     dataType: 'json',
     success: function (result) {

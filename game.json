@@ -9,15 +9,5 @@
   "openDataContext": "src/openDataContext",
    "renderMode" : 0,
       "navigateToMiniProgramAppIdList": [
-        "wxef53b1f6ef7f4369",
-        "wx6b228c86023cbdad",
-        "wx690c04ea6c42f944",
-        "wx82328048910c9771",
-        "wx4f555f15bda53c82",
-        "wxe8af419f331c9d02",
-        "wxb086943a364ab18e",
-        "wx259aa330649f0f73",
-        "wx026dbaeac3693b8e",
-        "wx033b4026951001e1"
       ]
 }

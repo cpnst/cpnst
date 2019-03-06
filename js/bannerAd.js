@@ -1,10 +1,7 @@
 // 广告单元列表
 let adUnitIdList = [
-  'adunit-46b6391acca59e7e',
-  'adunit-9e8ee81e4533b474',
-  'adunit-7d89050c846510ee',
-  'adunit-b65b26af1ae48c3a',
-  'adunit-5b85fe469a70a8c0'
+  'adUnit1',
+  'adUnit2'
 ];
 
 let winSize = wx.getSystemInfoSync();

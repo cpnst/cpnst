@@ -1,6 +1,5 @@
 require('libs/weapp-adapter-min')
-window.REMOTE_SERVER_ROOT = 'https://api.jusie.net/';
-// window.REMOTE_SERVER_ROOT = 'http://127.0.0.1:16000/';
+window.REMOTE_SERVER_ROOT = 'http://127.0.0.1:16000/';
 window.GAME_VERSIONS = 10036
 window.scrollTo = function () { };
 
@@ -9,11 +8,11 @@ require("./js/update.js")
 var AdPlugin = require('./ad/index.js')
 window.adPlugin = new AdPlugin()
 window.adPlugin.preload({
-  appid: 'wxfcedc57fd240b4ab',
+  appid: 'your appid',
   version: window.GAME_VERSIONS.toString(),
-  httpType: 'https',
-  host: 'api.jusie.net',
-  port: 80
+  httpType: 'http',
+  host: '127.0.0.1',
+  port: 16000
 });
 /*window.FootBannerCount = 0;
 window.showbanner = function (opts) {
@@ -40,7 +39,7 @@ window.showbanner = function (opts) {
 window.Alshowbanner = false
 window.adPlugin.showBanner();
 wx.request({
-  url: "https://api.jusie.net/adv/appid/feicheversion.json?" + Math.random(),
+  url: "https://127.0.0.1:16000/adv/appid/feicheversion.json?" + Math.random(),
   dataType: 'json',
   method: 'GET',
   success: function (res) {

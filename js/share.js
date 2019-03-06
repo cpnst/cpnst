@@ -3,95 +3,95 @@
  */
 var GAME_VERSIONS = "_" + window.GAME_VERSIONS;
 var SHARE_CONFIG_KEY = "SHARE_CONFIG_KEY_1";
-var SHARE_CONFIG_PATH = 'https://api.jusie.net/'+'moto/share/shareConfig' + GAME_VERSIONS + '.json';
+var SHARE_CONFIG_PATH = 'https://127.0.0.1:16000/'+'moto/share/shareConfig' + GAME_VERSIONS + '.json';
 var SHARE_CONFIG_DATA = {
   "hotShareData": [
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_1.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_1.jpg",
       "text": "bigbang胜利恋情曝光，女方是圈外人，容貌不输艺人"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_2.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_2.jpg",
       "text": "赵丽颖给我发消息，告诉我这只是个炒作！"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_3.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_3.jpg",
       "text": "检测身边朋友对你是真情还是假意的时候到了"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_4.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_4.jpg",
       "text": "看见漂.亮的小姐姐要学会分享"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_5.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_5.jpg",
       "text": "【做梦】别人早已越过龙门，你还在转发锦鲤"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_6.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_6.jpg",
       "text": "锦鲤游世界的清单全曝光，游啊游，终于游回家了~"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_7.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_7.jpg",
       "text": "为什么有人看问题一针见血，而有人只能看懂皮毛？"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_8.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_8.jpg",
       "text": "10分钟，甲醛浓度骤降10倍！"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_9.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_9.jpg",
       "text": "人生千万不能犯的3个大忌！"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_10.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_10.jpg",
       "text": "凭什么：家长没批改孩子作业竟被老师嘲讽？"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_11.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_11.jpg",
       "text": "日本艺人会偷税漏税吗？收入真的这么低？"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_12.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_12.png",
       "text": "赵丽颖冯绍峰领证,半个娱乐圈都在祝福,4个男人没有送祝福"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_13.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_13.png",
       "text": "有一种同框叫远离贾玲,和她同框谁都赢不了她"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_14.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_14.png",
       "text": "继赵丽颖和冯绍峰官宣之后,他也\"交卷\"了,并且伴郎团相当的帅"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_15.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_15.png",
       "text": "去陈赫开的火锅店吃饭,结账时,账单上3个打字让人费解!"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_16.jpg",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_16.jpg",
       "text": "吃猪蹄真的能抗衰老?真正抗衰老的是此5种食物"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_17.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_17.png",
       "text": "终于有答案了,先有鸡还是先有蛋?已经有科学家给出了答案"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_18.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_18.png",
       "text": "火箭获22+4悍将,3换1初步达成协议,夺冠指日可待"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_19.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_19.png",
       "text": "中国最怪的两座城,一个3点日出,一个23点日落,像出国了一样"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_20.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_20.png",
       "text": "如果油价涨到了10元/升,会对老百姓的生活造成什么影响?"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_21.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_21.png",
       "text": "菜刀上放一根\"缝衣针\",解决了千家万户的难题,学会受用一生!"
     },
     {
-      "imgSrc": "https://api.jusie.net/moto/share/hot_share_22.png",
+      "imgSrc": "https://127.0.0.1:16000/moto/share/hot_share_22.png",
       "text": "广东又一\"空城\",曾繁华度比深圳还高,如今街道都变得萧条"
     }
   ],
