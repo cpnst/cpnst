@@ -1,6 +1,6 @@
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/helper/detection.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/helper/detection.js
 
 var detection = (function () {
   var mod = { is: {} },
@@ -69,7 +69,7 @@ var detection = (function () {
   return mod;
 })();
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/plugins/zepto.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/plugins/zepto.js
 
 /* Zepto v1.1.2 - zepto event ajax form ie - zeptojs.com/license */
 
@@ -1602,7 +1602,7 @@ window.$ === undefined && (window.$ = Zepto)
 })(Zepto)
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/plugins/zepto-plugins.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/plugins/zepto-plugins.js
 
 // see https://github.com/blai/fashionista/issues/2
 ; (function ($) {
@@ -1617,10 +1617,10 @@ window.$ === undefined && (window.$ = Zepto)
   }
 })(Zepto);
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/overrides.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/overrides.js
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/ads.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/ads.js
 
 fg_api.prototype.adsModule = function () {
   var self = this,
@@ -1961,7 +1961,7 @@ fg_api.prototype.showAd = function (callback) {
   this.ads.showAd(callback);
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/adapters.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/adapters.js
 
 fg_api.prototype.adaptersModule = function () {
   var self = this,
@@ -1993,12 +1993,12 @@ fg_api.prototype.adaptersModule = function () {
   adaptersPrototype.init = function () {
     var section = "",
       subsection = "";
-    if (typeof famobi_adapters !== "undefined") {
-      for (section in famobi_adapters) {
+    if (typeof mobigame_adapters !== "undefined") {
+      for (section in mobigame_adapters) {
         self.log(section);
-        for (subsection in famobi_adapters[section]) {
+        for (subsection in mobigame_adapters[section]) {
           self.log(subsection);
-          this.add(section, subsection, famobi_adapters[section][subsection]);
+          this.add(section, subsection, mobigame_adapters[section][subsection]);
         }
       }
     }
@@ -2044,7 +2044,7 @@ fg_api.prototype.adaptersModule = function () {
 };
 
 !function (a, b) {
-  var famobi_analytics = {
+  var mobigame_analytics = {
     'stats': {}, // params for achivements etc. - custom key-value pairs
     'events': [], // list of logged events, for debugging purposes
     'currentScreen': '',
@@ -2081,12 +2081,12 @@ fg_api.prototype.adaptersModule = function () {
 
         var updateKey = function (key, value) {
           if (typeof key === 'string' && key.length) {
-            if (key in famobi_analytics.stats &&
+            if (key in mobigame_analytics.stats &&
               (typeof value === "undefined" || value === null)) {
-              delete famobi_analytics.stats[key];
+              delete mobigame_analytics.stats[key];
             } else {
               if (typeof value !== "undefined" && value) {
-                famobi_analytics.stats[key] = value;
+                mobigame_analytics.stats[key] = value;
               }
             }
 
@@ -2109,8 +2109,8 @@ fg_api.prototype.adaptersModule = function () {
           res[key] = value;
         }
 
-        if (famobi.hasOwnProperty("adapters")) {
-          famobi.adapters.run("analytics", "trackStats", key, value);
+        if (mobigame.hasOwnProperty("adapters")) {
+          mobigame.adapters.run("analytics", "trackStats", key, value);
         }
 
         resolve(res);
@@ -2119,14 +2119,14 @@ fg_api.prototype.adaptersModule = function () {
     'getStats': function () {
       // for debugging purposes
       return new Promise(function (resolve, reject) {
-        resolve(famobi_analytics.stats);
+        resolve(mobigame_analytics.stats);
       });
     },
 
     // EVENTS
     'trackEvent': function (event, params) {
       return new Promise(function (resolve, reject) {
-        if (typeof famobi_analytics[event] === "undefined") {
+        if (typeof mobigame_analytics[event] === "undefined") {
           reject('trackEvent(): unknown event \'' + event + '\'');
           return false;
         }
@@ -2214,29 +2214,29 @@ fg_api.prototype.adaptersModule = function () {
           return reject("trackEvent(): invalid params " + JSON.stringify(params));
         }
 
-        famobi_analytics.events.push({ event: event, params: params });
+        mobigame_analytics.events.push({ event: event, params: params });
 
-        if (famobi.hasOwnProperty("adapters")) {
-          famobi.adapters.run("analytics", "trackEvent", event, params);
+        if (mobigame.hasOwnProperty("adapters")) {
+          mobigame.adapters.run("analytics", "trackEvent", event, params);
         }
 
-        if (famobi_analytics.TRIGGER_AD.indexOf(event) > -1) {
-          // return famobi.showAd(function () {
+        if (mobigame_analytics.TRIGGER_AD.indexOf(event) > -1) {
+          // return mobigame.showAd(function () {
           //   resolve(event, params);
           // });
         }
 
-        if (famobi_analytics.TRIGGER_LEVELSCORE.indexOf(event) > -1) {
-          // famobi.submitHighscore(params['levelName'], params['levelScore']);
+        if (mobigame_analytics.TRIGGER_LEVELSCORE.indexOf(event) > -1) {
+          // mobigame.submitHighscore(params['levelName'], params['levelScore']);
           // return resolve(event, params);
         }
 
-        if (famobi_analytics.TRIGGER_TOTALSCORE.indexOf(event) > -1) {
-          // famobi.submitHighscore('TOTAL', params['totalScore']);
+        if (mobigame_analytics.TRIGGER_TOTALSCORE.indexOf(event) > -1) {
+          // mobigame.submitHighscore('TOTAL', params['totalScore']);
           // return resolve(event, params);
         }
 
-        if (famobi_analytics.TRIGGER_LIVESCORE.indexOf(event) > -1) {
+        if (mobigame_analytics.TRIGGER_LIVESCORE.indexOf(event) > -1) {
           // window.fg_api.__proto__.sendLiveScore(params['liveScore']);
           // return resolve(event, params);
         }
@@ -2247,7 +2247,7 @@ fg_api.prototype.adaptersModule = function () {
     'getEvents': function () {
       // for debugging purposes
       return new Promise(function (resolve, reject) {
-        resolve(famobi_analytics.events);
+        resolve(mobigame_analytics.events);
       });
     },
 
@@ -2270,7 +2270,7 @@ fg_api.prototype.adaptersModule = function () {
           'SCREEN_OTHER'
         ];
 
-        if (typeof famobi_analytics[screen] === "undefined") {
+        if (typeof mobigame_analytics[screen] === "undefined") {
           reject("trackScreen(): unknown screen '" + screen + "'");
           return false;
         }
@@ -2285,20 +2285,20 @@ fg_api.prototype.adaptersModule = function () {
           return false;
         }
 
-        famobi_analytics.currentScreen = screen;
-        famobi_analytics.pageTitle = pageTitle;
+        mobigame_analytics.currentScreen = screen;
+        mobigame_analytics.pageTitle = pageTitle;
 
-        if (famobi.hasOwnProperty("adapters")) {
-          famobi.adapters.run("analytics", "trackScreen", screen, pageTitle);
+        if (mobigame.hasOwnProperty("adapters")) {
+          mobigame.adapters.run("analytics", "trackScreen", screen, pageTitle);
         }
         resolve(screen, pageTitle);
       });
     },
     'getScreen': function () {
-      return famobi_analytics.currentScreen;
+      return mobigame_analytics.currentScreen;
     },
     'getPageTitle': function () {
-      return famobi_analytics.pageTitle;
+      return mobigame_analytics.pageTitle;
     },
 
     SCREEN_OTHER: 'SCREEN_OTHER', // custom, use pageTitle to differentiate
@@ -2325,18 +2325,18 @@ fg_api.prototype.adaptersModule = function () {
     TRIGGER_TOTALSCORE: ['EVENT_TOTALSCORE']
   };
 
-  // export famobi_analytics object to global object
-  b[a] = famobi_analytics;
+  // export mobigame_analytics object to global object
+  b[a] = mobigame_analytics;
 
-}('famobi_analytics', window);
+}('mobigame_analytics', window);
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/audio.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/audio.js
 
 /* http://updates.html5rocks.com/2014/07/Web-Audio-Changes-in-m36 */
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/base.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/base.js
 
 
 
@@ -2430,13 +2430,13 @@ if (!window.console) {
   };
 }
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/branding.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/branding.js
 
 fg_api.prototype.getMoreGamesButtonImage = function () {
-  return window.famobi.__("more_games_image");
+  return window.mobigame.__("more_games_image");
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/storage.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/storage.js
 
 fg_api.prototype.storageModule = function () {
   var self = this,
@@ -2481,13 +2481,13 @@ fg_api.prototype.storageModule = function () {
             },
             clear: function () {
                 for (var key in window[storageType]) {
-                    if(key.indexOf(window.famobi_gameID) === 0) this.removeItem(key, "");
+                    if(key.indexOf(window.mobigame_gameID) === 0) this.removeItem(key, "");
                 }
             },
             key: function (i) {
                 var keys = [];
                 for (var key in window[storageType]) {
-                    if(key.indexOf(window.famobi_gameID) === 0) keys.push(key);
+                    if(key.indexOf(window.mobigame_gameID) === 0) keys.push(key);
                 }
                 return typeof keys[i] === "undefined" ? null : keys[i];
             },
@@ -2497,7 +2497,7 @@ fg_api.prototype.storageModule = function () {
             getKeys: function(){
                 var keys = [];
                 for (var key in window[storageType]) {
-                    if(key.indexOf(window.famobi_gameID) === 0) keys.push(key);
+                    if(key.indexOf(window.mobigame_gameID) === 0) keys.push(key);
                 }
                 return keys;
             }
@@ -2527,13 +2527,13 @@ fg_api.prototype.storageModule = function () {
             },
             clear: function (ns) {
                 for (var key in this.data) {
-                    if(key.indexOf(window.famobi_gameID) === 0) this.removeItem(key, "");
+                    if(key.indexOf(window.mobigame_gameID) === 0) this.removeItem(key, "");
                 }
             },
             key: function (i) {
                 var keys = [];
                 for (var key in this.data) {
-                    if(key.indexOf(window.famobi_gameID) === 0) keys.push(key);
+                    if(key.indexOf(window.mobigame_gameID) === 0) keys.push(key);
                 }
                 return typeof keys[i] === "undefined" ? null : keys[i];
             },
@@ -2563,9 +2563,9 @@ fg_api.prototype.storageModule = function () {
 
         if(!M.receivingData && window.top != window.self) {
             window.top.postMessage({
-                scope: 'famobi_sdk',
+                scope: 'mobigame_sdk',
                 method: 'setItem',
-                package_id: window.famobi_gameID,
+                package_id: window.mobigame_gameID,
                 aid: self.config.aid,
                 data: {
                     key: getNamespacedKey(key, ns),
@@ -2591,9 +2591,9 @@ fg_api.prototype.storageModule = function () {
     storagePrototype.removeItem = function(key, ns) {
         if(window.top != window.self) {
             window.top.postMessage({
-                scope: 'famobi_sdk',
+                scope: 'mobigame_sdk',
                 method: 'removeItem',
-                package_id: window.famobi_gameID,
+                package_id: window.mobigame_gameID,
                 aid: self.config.aid,
                 data: {
                     key: getNamespacedKey(key, ns)
@@ -2623,15 +2623,15 @@ fg_api.prototype.storageModule = function () {
         window[storageType] = {
           data: {},
           getItem: function (key) {
-            key = famobi_gameID + ':' + key;
+            key = mobigame_gameID + ':' + key;
             return this.data[key];
           },
           setItem: function (key, value) {
-            key = famobi_gameID + ':' + key;
+            key = mobigame_gameID + ':' + key;
             this.data[key] = value;
           },
           removeItem: function (key) {
-            key = famobi_gameID + ':' + key;
+            key = mobigame_gameID + ':' + key;
             try {
               delete this.data[key];
             } catch (e) { }
@@ -2644,16 +2644,16 @@ fg_api.prototype.storageModule = function () {
         /*window[storageType] = {
           data: {},
           getItem: function (key) {
-            key = famobi_gameID + ':' + key;
+            key = mobigame_gameID + ':' + key;
             return originalStorage.getItem(key);
           },
           setItem: function (key, value) {
-            key = famobi_gameID + ':' + key;
+            key = mobigame_gameID + ':' + key;
             this.data[key] = value;
             return originalStorage.setItem(key, value);
           },
           removeItem: function (key) {
-            key = famobi_gameID + ':' + key;
+            key = mobigame_gameID + ':' + key;
             try {
               delete this.data[key];
             } catch (e) {}
@@ -2772,7 +2772,7 @@ fg_api.prototype.delItem = function (key, callback) {
   return this;
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/login.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/login.js
 
 fg_api.prototype.loginModule = function () {
   var self = this,
@@ -2824,7 +2824,7 @@ fg_api.prototype.setLoginStatus = function (loginStatus) {
 
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/highscores.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/highscores.js
 
 var highscoresModule = function () {
   var self = this,
@@ -2857,10 +2857,10 @@ var highscoresModule = function () {
 
       if (window.top !== window.self) {
         window.top.postMessage({
-          scope: 'famobi_livescores',
+          scope: 'mobigame_livescores',
           method: 'sendLiveScores',
           source: source,
-          package_id: window.famobi_gameID,
+          package_id: window.mobigame_gameID,
           aid: self.config.aid,
           data: {
             scores: scores
@@ -2960,7 +2960,7 @@ fg_api.prototype.submitHighscoreCallback = function () {
 };
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/navigation.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/navigation.js
 
 // fg_api.prototype.navigationModule = function() {
 // 	var self = this,
@@ -3024,11 +3024,11 @@ fg_api.prototype.submitHighscoreCallback = function () {
 // 			});
 // 		});
 //
-// 		window.Zepto("[data-famobi-href]").css("cursor", "pointer");
+// 		window.Zepto("[data-mobigame-href]").css("cursor", "pointer");
 //
-// 		window.Zepto("[data-famobi-href]").each(function() {
+// 		window.Zepto("[data-mobigame-href]").each(function() {
 // 			var callback = function() {
-// 				var link = window.Zepto(this).attr("data-famobi-href");
+// 				var link = window.Zepto(this).attr("data-mobigame-href");
 //
 // 				if (link == "moreGames") {
 // 					M.hideAll();
@@ -3122,7 +3122,7 @@ fg_api.prototype.backLink = function () {
 };
 
 fg_api.prototype.moreGamesLink = function () {
-  var moreGamesLink = window.famobi.__("more_games_url");
+  var moreGamesLink = window.mobigame.__("more_games_url");
 
   if (!window.open(moreGamesLink, "")) {
     window.location.href = moreGamesLink;
@@ -3133,7 +3133,7 @@ fg_api.prototype.moreGamesLink = function () {
 // 	this.navigation.setHtml(html);
 // };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/spinner.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/spinner.js
 
 fg_api.prototype.spinnerModule = function () {
   var self = this,
@@ -3196,7 +3196,7 @@ fg_api.prototype.spinnerModule = function () {
   return M;
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/modal.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/modal.js
 
 fg_api.prototype.modalModule = function () {
   var self = this,
@@ -3418,7 +3418,7 @@ fg_api.prototype.GC = function (data) {
   }
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/iframe.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/iframe.js
 
 fg_api.prototype.iframeModule = function () {
   var self = this,
@@ -3629,7 +3629,7 @@ fg_api.prototype.GC = function (data) {
   }
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/notifications.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/notifications.js
 
 fg_api.prototype.notificationsModule = function () {
   var self = this,
@@ -3740,7 +3740,7 @@ fg_api.prototype.notificationsModule = function () {
 };
 
 fg_api.prototype.notificationItem = function (messageObject) {
-  var self = window.famobi,
+  var self = window.mobigame,
     M;
 
   function module() { // define private vars
@@ -3800,7 +3800,7 @@ fg_api.prototype.notificationItem = function (messageObject) {
   return M;
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/orientation.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/orientation.js
 
 fg_api.prototype.orientationModule = function () {
   var self = this,
@@ -3850,7 +3850,7 @@ fg_api.prototype.orientationModule = function () {
   return M;
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/splash.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/splash.js
 
 fg_api.prototype.splashModule = function () {
   var self = this,
@@ -3887,7 +3887,7 @@ fg_api.prototype.splashModule = function () {
 
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/tracking.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/tracking.js
 
 fg_api.prototype.trackingModule = function () {
   var self = this,
@@ -3901,36 +3901,36 @@ fg_api.prototype.trackingModule = function () {
 
   trackingPrototype.init = function () {
 
-    window.famobi_dataLayer = window.famobi_dataLayer || [];
+    window.mobigame_dataLayer = window.mobigame_dataLayer || [];
 
     // Use dataLayer variables
-    window.famobi_dataLayer.push({
+    window.mobigame_dataLayer.push({
       'gameId': self.config.uuid,
-      'packageId': window.famobi_gameID,
+      'packageId': window.mobigame_gameID,
       'portalId': self.config.pid,
       'affiliateId': self.config.aid
     });
 
     // Track Gameplay after 30 seconds
     setTimeout(function () {
-      M.trackEvent("Target", "Gameplay", window.famobi_gameID);
+      M.trackEvent("Target", "Gameplay", window.mobigame_gameID);
 
       // Track Highscore Session
       if (self.hasFeature("highscores")) {
-        M.trackPassiveEvent('Highscore event', 'start', window.famobi_gameID);
+        M.trackPassiveEvent('Highscore event', 'start', window.mobigame_gameID);
       }
     }, 30E3);
   };
 
   trackingPrototype.data = function (dataObject) {
-    window.famobi_dataLayer.push(dataObject);
+    window.mobigame_dataLayer.push(dataObject);
   }
 
   trackingPrototype.trackEvent = function (category, action, label, nonInteraction) {
     if (typeof nonInteraction === 'undefined')
       nonInteraction = false;
 
-    window.famobi_dataLayer.push({
+    window.mobigame_dataLayer.push({
       'event': 'Ingame event',
       'eventCategory': category,
       'eventAction': action,
@@ -3938,7 +3938,7 @@ fg_api.prototype.trackingModule = function () {
       'nonInteraction': nonInteraction
     });
 
-    window.famobi_dataLayer.push({
+    window.mobigame_dataLayer.push({
       'event': undefined,
       'eventCategory': undefined,
       'eventAction': undefined,
@@ -3959,11 +3959,11 @@ fg_api.prototype.trackingModule = function () {
 
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/translation.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/translation.js
 
 
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/signals.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/signals.js
 
 /* Signals / Events received from the game */
 fg_api.prototype.gameStarted = function () {
@@ -3994,7 +3994,7 @@ fg_api.prototype.setVolume = function (newVolume) {
   this.log("Received volume control signal");
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/gametranslation.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/gametranslation.js
 
 window.gametranslationModule = function () {
   var self = this,
@@ -4113,7 +4113,7 @@ fg_api.prototype.getCurrentLanguage = function () {
   return this.gametranslation.curLangString;
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/game.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/game.js
 
 fg_api.prototype.gameModule = function () {
   var self = this,
@@ -4145,7 +4145,7 @@ fg_api.prototype.gameModule = function () {
         scriptEl.onload = callback;
         self.bodyElement.appendChild(scriptEl);
       }
-    })(window.famobi_gameJS);
+    })(window.mobigame_gameJS);
   };
 
   M = new module();
@@ -4154,7 +4154,7 @@ fg_api.prototype.gameModule = function () {
   return M;
 };
 
-// /var/www/famobi/release-v2/laravel-fe/public/assets/js/gameapi/v1/init.js
+// /var/www/mobigame/release-v2/laravel-fe/public/assets/js/gameapi/v1/init.js
 
 fg_api.prototype.init = function () {
   var self = this;
